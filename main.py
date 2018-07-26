@@ -46,13 +46,13 @@ def download():
 		return render_template("downloader.html")
 
 	else:
-		return redirect(url_for("zip_")) 
+		return redirect(url_for("zip", username = session['user'])) 
 		#return send_from_directory(directory=path.join(path_to_static, session["user"]), filename="your_music.zip", as_attachment=True)
 
-@app.route("/zip")
-def zip_():
-	return send_from_directory(directory=path.join(path_to_static, session["user"]) \
-		, filename="your_music.zip", as_attachment=True)
+@app.route("/<username>/zip")
+def zip(username):
+	return send_from_directory(directory=path.join(path_to_static, session["user"])\
+	 , filename="your_music.zip", as_attachment=True)
 
 @app.route('/getsession')
 def getsession():
